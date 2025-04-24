@@ -163,5 +163,3 @@ docker stop web && docker rm web
 - O conteúdo estático é servido por meio de **montagem de volume**, prática comum em ambientes de desenvolvimento.
 
 ```
-
-Se quiser, posso gerar uma versão com comentários explicativos ou diagramas. Deseja algo mais visual também?
