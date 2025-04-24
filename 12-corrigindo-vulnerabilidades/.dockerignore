@@ -1,0 +1,18 @@
+# Ignora diretórios de cache e build do Python
+__pycache__/
+*.pyc
+
+# Ignora diretórios do Git
+.git/
+.gitignore
+
+# Ignora ambientes virtuais
+venv/
+
+# Ignora arquivos de log
+*.log
+
+# Ignora arquivos de testes e outros arquivos desnecessários
+tests/
+*.md
+

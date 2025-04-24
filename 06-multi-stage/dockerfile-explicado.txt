@@ -1,0 +1,33 @@
+# Primeiro, eu preciso definir a imagem-base para este container.
+FROM golang:1.24 AS builder
+
+# Agora, eu defino qual será minha pasta de trabalho
+WORKDIR /app-go
+
+# Preciso copiar os arquivos go.* para a pasta e baixar as dependências
+COPY go.mod go.sum .
+RUN go mod download
+
+# Agora, eu preciso copiar o restante do app para a pasta de trabalho
+COPY . .
+
+# O Golang gera um binário exectável para a aplicação quando eu compilo o código. Nesse caso, o binário é o "main"
+RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main .
+
+
+# A partir daqui, eu começo a gerar a imagem final, utilizando apenas o binário gerado pelo Golang
+
+# Escolho uma imagem mais leve como base
+FROM debian:bullseye-slim
+
+# Defino uma pasta de trabalho
+WORKDIR /root/
+
+# Preciso copiar o binário "main" gerado pelo "builder"
+COPY --from=builder /app-go/main .
+
+# Escolho uma porta para "rodar" a aplicação
+EXPOSE 8080
+
+# Quando o container for iniciado, eu preciso "rodar" a aplicação
+CMD ["./main"]

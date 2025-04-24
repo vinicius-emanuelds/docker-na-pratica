@@ -12,6 +12,7 @@ Executar um container Docker utilizando a imagem do **Nginx**, substituindo sua 
 
 - Docker instalado e configurado corretamente
     > Eu utilizo o [Rancher Desktop](https://rancherdesktop.io/), um aplicativo de código aberto que fornece todos os elementos essenciais para trabalhar com contêineres e Kubernetes.
+- Git instalado para clonar o repositório
 - Acesso à internet para baixar a imagem e clonar o repositório
 
 <br>
@@ -85,3 +86,82 @@ A landing page do Tailwind deverá ser exibida.
 - [Tailwind Toolbox - Landing Page](https://github.com/tailwindtoolbox/Landing-Page)
 - [Docker Hub - Nginx](https://hub.docker.com/_/nginx)
 - [Documentação oficial do Docker](https://docs.docker.com/)
+
+
+Segue abaixo a documentação em **Markdown** para o **Exercício 1: Rodando um container básico com Nginx e site estático (TailwindCSS)**.
+
+---
+
+```markdown
+# Exercício 1 – Rodando um Container Básico com Nginx
+
+## Objetivo
+
+Executar um container utilizando a imagem oficial do Nginx, substituindo a página padrão por uma landing page estática desenvolvida com TailwindCSS. Este exercício visa introduzir o uso básico de containers Docker, sem criação de imagens personalizadas.
+
+---
+
+## Pré-requisitos
+
+- Docker instalado e em funcionamento
+- Git instalado
+- Acesso à internet para clonar o repositório
+
+---
+
+## Passo a Passo
+
+### 1. Clonar o repositório da landing page
+
+Execute o seguinte comando para clonar a landing page estática baseada em TailwindCSS:
+
+```bash
+git clone https://github.com/tailwindtoolbox/Landing-Page.git
+```
+
+### 2. Rodar o container com Nginx
+
+Utilize o comando abaixo para iniciar um container com a imagem oficial do Nginx, mapeando o diretório clonado como volume:
+
+```bash
+docker run -d --name web \
+  -p 8080:80 \
+  -v $(pwd)/Landing-Page:/usr/share/nginx/html \
+  nginx
+```
+
+- `-d`: executa o container em segundo plano
+- `--name web`: nome do container
+- `-p 8080:80`: mapeia a porta 80 do container para a porta 8080 do host
+- `-v $(pwd)/Landing-Page:/usr/share/nginx/html`: monta o volume local com os arquivos da landing page no diretório padrão do Nginx
+
+### 3. Acessar o site no navegador
+
+Abra o navegador e acesse:
+
+```
+http://localhost:8080
+```
+
+Você verá a landing page carregada diretamente no container.
+
+---
+
+## Finalização
+
+Para parar e remover o container após os testes:
+
+```bash
+docker stop web && docker rm web
+```
+
+---
+
+## Considerações
+
+- Esse exercício **não envolve a criação de uma imagem Docker personalizada**, apenas o uso da imagem oficial do Nginx.
+- O conteúdo estático é servido por meio de **montagem de volume**, prática comum em ambientes de desenvolvimento.
+
+```
+
+Se quiser, posso gerar uma versão com comentários explicativos ou diagramas. Deseja algo mais visual também?
