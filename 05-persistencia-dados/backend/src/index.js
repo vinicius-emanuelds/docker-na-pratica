@@ -1,8 +1,8 @@
 const app = require("./server");
 const { port } = require("./config");
 
-const server = app.listen(port, '0.0.0.0', function() {
-  console.log("Webserver is ready", port);
+const server = app.listen(port, function() {
+  console.log("Webserver is ready");
 });
 
 //

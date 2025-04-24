@@ -1,4 +1,6 @@
-# Exercício 1 – Rodando um Container Básico com Nginx
+# Rodando um Container Básico com Nginx
+
+<br>
 
 ## Objetivo
 
@@ -9,7 +11,7 @@ Executar um container utilizando a imagem oficial do Nginx, substituindo a pági
 ## Pré-requisitos
 
 - Docker instalado e em funcionamento
-  > Aqui eu estou usando o [Rancher Desktop](https://rancherdesktop.io/), mas você pode usar o Docker Desktop ou o Docker Engine, dependendo do seu sistema operacional.
+  > Eu utilizo o [Rancher Desktop](https://rancherdesktop.io/), um aplicativo de código aberto que fornece todos os elementos essenciais para trabalhar com contêineres e Kubernetes, mas você pode usar o Docker Desktop ou o Docker Engine, dependendo do seu sistema operacional.
 - Git instalado
 - Acesso à internet para clonar o repositório
 
