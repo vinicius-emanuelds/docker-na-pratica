@@ -24,23 +24,30 @@ Execute o seguinte comando para clonar a landing page estática baseada em Tailw
 ```bash
 git clone https://github.com/tailwindtoolbox/Landing-Page.git
 ```
-<img src="https://github.com/vinicius-emanuelds/docker/blob/71889ed67e91b8d7b6f1f88bff1ca24b8d23b7a3/assets/to_README/01%20-%20CLONE.png">
+
+![alt text](<../assets/to_README/01 - CLONE.png>)
 
 ### 2. Rodar o container com Nginx
 
 Utilize o comando abaixo para iniciar um container com a imagem oficial do Nginx, mapeando o diretório clonado como volume:
 
 ```bash
-docker run -d --name web \
+docker run -d --name nginx-tailwind \
   -p 8080:80 \
   -v $(pwd)/Landing-Page:/usr/share/nginx/html \
   nginx
 ```
 
+![alt text](<../assets/to_README/01 - RUN.png>)
+
 - `-d`: executa o container em segundo plano
 - `--name web`: nome do container
 - `-p 8080:80`: mapeia a porta 80 do container para a porta 8080 do host
 - `-v $(pwd)/Landing-Page:/usr/share/nginx/html`: monta o volume local com os arquivos da landing page no diretório padrão do Nginx
+
+Agora, utilize o comando `Docker ps` para verificar se o container está em execução:
+
+![alt text](<../assets/to_README/01 - DOCKER PS.png>)
 
 ### 3. Acessar o site no navegador
 
@@ -52,14 +59,16 @@ http://localhost:8080
 
 Você verá a landing page carregada diretamente no container.
 
----
+![alt text](<../assets/to_README/01 - TESTE.png>)
+
+<br>
 
 ## Finalização
 
 Para parar e remover o container após os testes:
 
 ```bash
-docker stop web && docker rm web
+docker stop nginx-tailwind && docker rm nginx-tailwind
 ```
 
 ---
@@ -68,5 +77,3 @@ docker stop web && docker rm web
 
 - Esse exercício **não envolve a criação de uma imagem Docker personalizada**, apenas o uso da imagem oficial do Nginx.
 - O conteúdo estático é servido por meio de **montagem de volume**, prática comum em ambientes de desenvolvimento.
-
-```
