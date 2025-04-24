@@ -24,7 +24,7 @@ Execute o seguinte comando para clonar a landing page estática baseada em Tailw
 ```bash
 git clone https://github.com/tailwindtoolbox/Landing-Page.git
 ```
-<img src="assets\to_README\01 - CLONE.png">
+<img src="https://github.com/vinicius-emanuelds/docker/blob/71889ed67e91b8d7b6f1f88bff1ca24b8d23b7a3/assets/to_README/01%20-%20CLONE.png">
 
 ### 2. Rodar o container com Nginx
 
