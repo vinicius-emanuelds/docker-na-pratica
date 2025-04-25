@@ -36,7 +36,7 @@ COPY instalador.sh .
 RUN chmod +x instalador.sh
 ```
 
-📌 **Explicação das instruções**:
+**Explicação das instruções**:
 
 - `FROM ubuntu`: Define a imagem base do container.
 - `WORKDIR`: Define o diretório de trabalho padrão.
