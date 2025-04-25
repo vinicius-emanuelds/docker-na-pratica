@@ -162,6 +162,6 @@ docker rmi flask
 
 ---
 
-## 📌 Considerações Finais
+## Considerações Finais
 
 - Utilize o `requirements.txt` para manter dependências organizadas e reprodutíveis.
