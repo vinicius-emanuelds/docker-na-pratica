@@ -52,4 +52,4 @@ Os exercícios estão organizados por **nível de dificuldade** e cada item incl
 Estagiário em Cloud & DevSecOps na Compass UOL  
 Graduando em Análise e Desenvolvimento de Sistemas – FATEC
 
-[🔗 LinkedIn](https://www.linkedin.com/in/seu-perfil) • [🌐 Portfólio](https://seu-site.dev)
+[🔗 LinkedIn](https://www.linkedin.com/in/seu-perfil)
