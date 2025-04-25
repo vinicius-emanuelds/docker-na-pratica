@@ -3,7 +3,7 @@
 
 <br>
 
-## 🎯 Objetivo
+## Objetivo
 
 Praticar o gerenciamento de containers Docker listando, parando e removendo containers específicos, tanto em execução quanto finalizados.
 
@@ -11,7 +11,7 @@ Praticar o gerenciamento de containers Docker listando, parando e removendo cont
 
 ## Passos Realizados
 
-### 🔍 1. Listar todos os containers (ativos e inativos)
+### 1. Listar todos os containers (ativos e inativos)
 
 ```bash
 docker container ls -a
@@ -22,7 +22,7 @@ docker container ls -a
 ![alt text](<../assets/to_README/03 - CONTAINER LS.png>)
 ---
 
-### ⛔ 2. Parar um container em execução
+### 2. Parar um container em execução
 
 ```bash
 docker stop <ID ou NOME do container>
@@ -36,7 +36,7 @@ docker stop nginx-tailwind
 
 ---
 
-### 🗑️ 3. Remover um container específico
+### 3. Remover um container específico
 
 ```bash
 docker rm <ID ou NOME do container>
@@ -53,7 +53,7 @@ docker rm container1 container2 container3
 
 ---
 
-## 💡 Dica Extra
+## Dica Extra
 
 Para remover todos os containers parados:
 
@@ -65,7 +65,7 @@ docker container prune
 
 ---
 
-## ✅ Resultado Esperado
+## Resultado Esperado
 
 - Listagem clara de containers com `docker ls -a`.
 - Container parado corretamente com `docker stop`.
