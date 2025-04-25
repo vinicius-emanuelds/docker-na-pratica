@@ -218,9 +218,6 @@ cat << 'EOF' > /var/www/html/index.html
                         <li><i class="bi bi-check-circle me-2"></i>Listagem e remoção de containers</li>
                         <li><i class="bi bi-check-circle me-2"></i>Dockerfile para app Flask</li>
                     </ul>
-                    <div class="code-snippet">
-                        <span class="text-success">$</span> docker run -d -p 8080:80 nginx
-                    </div>
                 </div>
             </div>
         </div>
@@ -240,9 +237,6 @@ cat << 'EOF' > /var/www/html/index.html
                         <li><i class="bi bi-check-circle me-2"></i>Rede personalizada com Node e MongoDB</li>
                         <li><i class="bi bi-check-circle me-2"></i>Compose com PostgreSQL</li>
                     </ul>
-                    <div class="code-snippet">
-                        <span class="text-success">$</span> docker volume create mysql_data
-                    </div>
                 </div>
             </div>
         </div>
@@ -262,9 +256,6 @@ cat << 'EOF' > /var/www/html/index.html
                         <li><i class="bi bi-check-circle me-2"></i>Análise com Trivy</li>
                         <li><i class="bi bi-check-circle me-2"></i>Correção de vulnerabilidades</li>
                     </ul>
-                    <div class="code-snippet">
-                        <span class="text-success">$</span> trivy image nome-da-imagem
-                    </div>
                 </div>
             </div>
         </div>
