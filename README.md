@@ -43,7 +43,6 @@ Os exercícios estão organizados por **nível de dificuldade** e cada item incl
 
 - [`Comandos_Docker.md`](./Comandos_Docker.md) – Cheatsheet de comandos Docker úteis.
 - `assets/to_README/` – Pasta com imagens para enriquecer os arquivos de documentação.
-- `src/` – Pasta reservada para códigos-fonte, scripts ou testes utilizados nos exercícios.
 
 ---
 
