@@ -55,7 +55,7 @@ trivy image --severity HIGH,CRITICAL node:16 > relatorio-trivy.txt
 
 Com base no relatório gerado pelo Trivy e armazenado em `relatorio-trivy.txt`, os pontos principais são:
 
-### 🔍 Resumo da Análise
+### Resumo da Análise
 
 - **Imagem escaneada**: `node:16` (baseada em Debian 10.13)
 - **Total de vulnerabilidades**: **1.141**
@@ -69,7 +69,7 @@ A grande maioria das vulnerabilidades provém de **bibliotecas do sistema operac
 
 ---
 
-### 📦 Pacotes Node.js
+### Pacotes Node.js
 
 Apenas **2 pacotes** do Node.js apresentaram vulnerabilidades:
 
@@ -86,7 +86,7 @@ Apenas **2 pacotes** do Node.js apresentaram vulnerabilidades:
 
 ---
 
-### ⚠️ Conclusão
+### Conclusão
 
 > As recomendações de segurança não devem se restringir à atualização das dependências Node.js, pois o maior risco está relacionado à base Debian.
 
