@@ -1,27 +1,38 @@
+
 # Rodando um Container Básico com Nginx
+##### [Voltar para a lista de exercícios](../README.md)
 
 <br>
 
-## Objetivo
+---
 
-Executar um container utilizando a imagem oficial do Nginx, substituindo a página padrão por uma landing page estática desenvolvida com TailwindCSS. Este exercício visa introduzir o uso básico de containers Docker, sem criação de imagens personalizadas.
+## Objetivos
+
+- Executar um container utilizando a imagem oficial do Nginx.
+- Substituir a página padrão por uma landing page estática baseada em TailwindCSS.
+- Compreender o uso de montagem de volumes em containers.
 
 <br>
+
+---
 
 ## Pré-requisitos
 
-- Docker instalado e em funcionamento
-  > Eu utilizo o [Rancher Desktop](https://rancherdesktop.io/), um aplicativo de código aberto que fornece todos os elementos essenciais para trabalhar com contêineres e Kubernetes, mas você pode usar o Docker Desktop ou o Docker Engine, dependendo do seu sistema operacional.
-- Git instalado
-- Acesso à internet para clonar o repositório
+- Docker instalado e em funcionamento  
+- Git instalado  
+- Acesso à internet para clonar o repositório  
+
+> Recomendo o uso do [Rancher Desktop](https://rancherdesktop.io/), uma alternativa open-source ao Docker Desktop, mas qualquer engine Docker pode ser utilizada.
 
 <br>
 
-## Passo a Passo
+---
+
+## Etapas de Execução
 
 ### 1. Clonar o repositório da landing page
 
-Execute o seguinte comando para clonar a landing page estática baseada em TailwindCSS:
+Clone o repositório com o conteúdo HTML da página:
 
 ```bash
 git clone https://github.com/tailwindtoolbox/Landing-Page.git
@@ -29,9 +40,13 @@ git clone https://github.com/tailwindtoolbox/Landing-Page.git
 
 ![alt text](<../assets/to_README/01 - CLONE.png>)
 
+<br>
+
+---
+
 ### 2. Rodar o container com Nginx
 
-Utilize o comando abaixo para iniciar um container com a imagem oficial do Nginx, mapeando o diretório clonado como volume:
+Execute o container mapeando o diretório clonado como volume:
 
 ```bash
 docker run -d --name nginx-tailwind \
@@ -42,40 +57,52 @@ docker run -d --name nginx-tailwind \
 
 ![alt text](<../assets/to_README/01 - RUN.png>)
 
-- `-d`: executa o container em segundo plano
-- `--name web`: nome do container
-- `-p 8080:80`: mapeia a porta 80 do container para a porta 8080 do host
-- `-v $(pwd)/Landing-Page:/usr/share/nginx/html`: monta o volume local com os arquivos da landing page no diretório padrão do Nginx
+**Parâmetros utilizados:**
+- `-d`: Executa o container em segundo plano.
+- `--name nginx-tailwind`: Define o nome do container.
+- `-p 8080:80`: Mapeia a porta 80 do container para a 8080 do host.
+- `-v $(pwd)/Landing-Page:/usr/share/nginx/html`: Substitui os arquivos padrão do Nginx.
 
-Agora, utilize o comando `Docker ps` para verificar se o container está em execução:
+Verifique se o container está em execução:
+
+```bash
+docker ps
+```
 
 ![alt text](<../assets/to_README/01 - DOCKER PS.png>)
 
-### 3. Acessar o site no navegador
+<br>
 
-Abra o navegador e acesse:
+---
+
+### 3. Acessar a landing page no navegador
+
+Acesse no navegador:
 
 ```
 http://localhost:8080
 ```
 
-Você verá a landing page carregada diretamente no container.
-
 ![alt text](<../assets/to_README/01 - TESTE.png>)
+
+A página deverá estar funcional e refletindo os arquivos clonados.
 
 <br>
 
+---
+
 ## Finalização
 
-Para parar e remover o container após os testes:
+Para remover o ambiente criado após os testes:
 
 ```bash
 docker stop nginx-tailwind && docker rm nginx-tailwind
 ```
 
+<br>
+
 ---
 
-## Considerações
+## Considerações Finais
 
-- Esse exercício **não envolve a criação de uma imagem Docker personalizada**, apenas o uso da imagem oficial do Nginx.
-- O conteúdo estático é servido por meio de **montagem de volume**, prática comum em ambientes de desenvolvimento.
+- Este exercício **não requer a criação de uma imagem personalizada**.

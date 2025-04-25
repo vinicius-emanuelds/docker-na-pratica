@@ -1,16 +1,18 @@
-Claro! Aqui está a documentação em **Markdown** para o exercício 11, incluindo instalação do Trivy, execução da análise e recomendações com base nos resultados:
+# Análise de Imagem Docker com Trivy
+##### [Voltar para a lista de exercícios](../README.md)
+
+<br>
 
 ---
 
-```markdown
-# Exercício 11 – Análise de Imagem Docker com Trivy
-
-## 🎯 Objetivo
+## Objetivo
 Utilizar o Trivy para escanear uma imagem Docker pública (`node:16`) e identificar vulnerabilidades de segurança, com foco nas classificadas como `HIGH` ou `CRITICAL`.
 
+<br>
+
 ---
 
-## 📥 Passo a passo
+## Passo a passo
 
 ### 1. Instalar o Trivy
 
@@ -24,82 +26,85 @@ curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/inst
 trivy --version
 ```
 
+<br>
+
 ---
+
 
 ### 2. Rodar análise de imagem
+
 ```bash
-trivy image node:16
+trivy image --severity HIGH,CRITICAL node:16
 ```
+> O uso de `--severity` limita a análise às vulnerabilidades de alta e crítica.
+
+![alt text](<../assets/to_README/11 - TRIVY.png>)
+
+Como alternativa, você pode redirecionar a saída para um arquivo de texto:
+
+```bash
+trivy image --severity HIGH,CRITICAL node:16 > relatorio-trivy.txt
+```
+![alt text](<../assets/to_README/11 - CAT.png>)
+
+<br>
 
 ---
 
-## 📊 Resultado da Análise
+## Análise Final
 
-### 🔧 Sistema Operacional: Debian 10.13 (imagem base `node:16`)
-- **Total de vulnerabilidades:** 1.141
-  - **HIGH:** 1.110
-  - **CRITICAL:** 31
+Com base no relatório gerado pelo Trivy e armazenado em `relatorio-trivy.txt`, os pontos principais são:
 
-🔴 Muitas dessas vulnerabilidades vêm de bibliotecas fundamentais (`glibc`, `openssl`, `libssl`, `zlib`), que impactam diretamente a segurança do container.
+### 🔍 Resumo da Análise
+
+- **Imagem escaneada**: `node:16` (baseada em Debian 10.13)
+- **Total de vulnerabilidades**: **1.141**
+  - **HIGH**: 1.110
+  - **CRITICAL**: 31
+
+![alt text](<../assets/to_README/11 - DEBIAN.png>)
+
+A grande maioria das vulnerabilidades provém de **bibliotecas do sistema operacional** como:
+- `glibc`, `gcc`, `openssl`, `curl`, `imagemagick`, entre outras.
 
 ---
 
 ### 📦 Pacotes Node.js
 
-| Pacote | Vulnerabilidade | Severidade | Status | Versão Afetada | Versão Corrigida |
-|--------|------------------|------------|--------|----------------|------------------|
-| `ip`   | CVE-2024-29415   | HIGH       | Affected | 2.0.0        | - (ainda não corrigida) |
-| `semver` | CVE-2022-25883 | HIGH       | Fixed   | 7.3.7         | 7.5.2, 6.3.1, 5.7.2 |
+Apenas **2 pacotes** do Node.js apresentaram vulnerabilidades:
+
+| Pacote  | CVE             | Severidade | Status    | Ação recomendada                      |
+|---------|------------------|------------|-----------|---------------------------------------|
+| `ip`    | CVE-2024-29415   | HIGH       | Affected  | Aguardar correção ou reavaliar uso    |
+| `semver`| CVE-2022-25883   | HIGH       | Fixed     | Atualizar para versão `^7.5.2`        |
+
+![alt text](<../assets/to_README/11 - NODE.png>)
+
+**Observação**: Nenhuma dependência crítica da aplicação foi afetada diretamente de forma ativa ou irreversível.
+
+<br>
 
 ---
 
-## ✅ Recomendações
+### ⚠️ Conclusão
 
-### 1. **Atualizar imagem base**
-Substituir `node:16` por uma versão mais segura e recente:
+> As recomendações de segurança não devem se restringir à atualização das dependências Node.js, pois o maior risco está relacionado à base Debian.
 
-```dockerfile
-FROM node:20-alpine
-```
 
-- Reduz drasticamente as vulnerabilidades do SO.
-- Imagem mais enxuta e segura.
 
----
+1. **Atualizar a imagem base**
+   - Troque `node:16` por `node:20-alpine` ou `node:18-alpine`:
+     ```dockerfile
+     FROM node:20-alpine
+     ```
+   - O Alpine Linux é **muito mais enxuto**, com menos pacotes e menor superfície de ataque.
 
-### 2. **Atualizar dependências**
-No `package.json`, atualizar o pacote `semver` para a versão corrigida:
+2. **Atualizar dependências**
+   - Ajustar no `package.json`:
+     ```json
+     "semver": "^7.5.2"
+     ```
 
-```json
-"semver": "^7.5.2"
-```
-
-### 3. **Revisar uso do pacote `ip`**
-- Confirmar necessidade real.
-- Se possível, remover ou substituir.
-- Aguardar correção se o uso for indispensável.
-
----
-
-## 🧪 Validação pós-ajustes
-
-Rebuild da imagem:
-```bash
-docker build -t app-seguro .
-```
-
-Nova análise:
-```bash
-trivy image app-seguro
-```
-
----
-
-## 🔚 Conclusão
-
-Este exercício reforça a importância da segurança na escolha de imagens base e na manutenção das dependências. O uso do Trivy permite decisões proativas para mitigar riscos antes mesmo da implantação.
-
----
-```
-
-Se desejar, posso transformar este conteúdo em PDF ou adicionar ao seu repositório como `README.md`. Deseja isso?
+3. **Evitar bibliotecas desnecessárias**
+   - Avaliar se o pacote `ip` é realmente necessário no seu projeto.
+   - Substituir ou isolar seu uso enquanto não há versão corrigida.

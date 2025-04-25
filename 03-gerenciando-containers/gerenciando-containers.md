@@ -1,4 +1,7 @@
-# Exercício 03 – Listando e Removendo Containers
+# Listando e Removendo Containers
+##### [Voltar para a lista de exercícios](../README.md)
+
+<br>
 
 ## 🎯 Objetivo
 
@@ -6,16 +9,17 @@ Praticar o gerenciamento de containers Docker listando, parando e removendo cont
 
 ---
 
-## 🧪 Passos Realizados
+## Passos Realizados
 
 ### 🔍 1. Listar todos os containers (ativos e inativos)
 
 ```bash
-docker ps -a
+docker container ls -a
 ```
 
 > O parâmetro `-a` lista **todos** os containers, incluindo os que estão **parados**.
 
+![alt text](<../assets/to_README/03 - CONTAINER LS.png>)
 ---
 
 ### ⛔ 2. Parar um container em execução
@@ -24,9 +28,10 @@ docker ps -a
 docker stop <ID ou NOME do container>
 ```
 
+
 > Exemplo:
 ```bash
-docker stop amazing_einstein
+docker stop nginx-tailwind
 ```
 
 ---
@@ -36,16 +41,15 @@ docker stop amazing_einstein
 ```bash
 docker rm <ID ou NOME do container>
 ```
+![alt text](<../assets/to_README/03 - DOCKER RM.png>)
 
-> Exemplo:
-```bash
-docker rm amazing_einstein
-```
 
 > Para remover vários containers:
 ```bash
 docker rm container1 container2 container3
 ```
+
+![alt text](<../assets/to_README/03 - DOCKER RM (2).png>)
 
 ---
 
@@ -63,8 +67,6 @@ docker container prune
 
 ## ✅ Resultado Esperado
 
-- Listagem clara de containers com `docker ps -a`.
+- Listagem clara de containers com `docker ls -a`.
 - Container parado corretamente com `docker stop`.
 - Container removido com sucesso via `docker rm`.
-
----
